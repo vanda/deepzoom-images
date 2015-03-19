@@ -1,0 +1,6 @@
+www/assets/tiles/*
+!*.gitkeep
+
+get-pip.py
+.vagrant/*
+.DS_Store

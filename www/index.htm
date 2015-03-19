@@ -1,0 +1,139 @@
+<html>
+
+<head>
+	<title>Image Zoom</title>
+	
+	<style>
+		
+		#osd_liam {
+			border: 1px solid grey;
+			width: 100%;
+			height: 600px;
+			position: relative
+		}
+		
+		.pin { 
+			opacity:    0.4;
+            filter:     alpha(opacity=40);
+            border:     2px solid #900;
+            outline:    none;
+            background-color: #900;
+		}
+		
+		.infobox {
+			background-color: rgba(0, 0, 0, 0.5);
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			z-index: 1;
+			display: none;
+		}
+		
+			.infobox__content {
+				background-color: white;
+				max-width: 800px;
+				min-width: 50%;
+				width: 75%;
+				margin: 5% auto;
+				height: 70%;
+			}
+	</style>
+	
+</head>
+
+<body>
+	<div id="osd_liam">
+		
+		<div class="infobox">
+			<div class="infobox__content">
+				<a href="#" class="infobox__btnclose">Close</a>
+				
+				<h1 class="infobox__title"></h1>
+				
+				<div class="infobox__insertedhtml"></div>
+				
+			</div>
+		</div>
+		
+	</div>
+	
+	<script src="assets/js/openseadragon.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+		
+		var points = [{
+			"x": 0.1725587480161596, 
+		    "y": 0.2626583298462734,
+		    "title": "Point One",
+		    "content": '<iframe src="https://player.vimeo.com/video/106610828" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
+		    "link": "http://www.vam.ac.uk",
+		    "date": "2014/10/23"
+		}, {
+			"x": 0.7751677852348994, 
+		    "y": 0.19580536912751675,
+		    "title": "Point Two",
+		    "content": "This is some text content",
+		    "link": "http://www.vam.ac.uk",
+		    "date": "2014/10/23"
+		}];
+		
+		// Create pins from points
+		point_overlays = [];
+		for (var i = 0; i < points.length; i++) {
+			d = {
+				id: 'point' + i,
+	            x: points[i].x, 
+	            y: points[i].y, 
+	            width: 0.01,
+	            height: 0.01,
+	            className: 'pin'
+			};
+		    point_overlays.push(d);
+		};
+		
+	    var viewer = OpenSeadragon({
+	        id: "osd_liam",
+	        prefixUrl: "assets/images/",
+	        tileSources: "/assets/tiles/landscape.dzi",
+			defaultZoomLevel: 1.8,
+			minZoomLevel: 1,
+			visibilityRatio: 1, // Ensure image stays in the viewpoint
+			zoomPerClick: 0, // Click will not trigger zoom
+			showNavigationControl: false,
+			springStiffness: 5.0,
+			constrainDuringPan: true,
+		    overlays: point_overlays
+	    });
+	    
+	    $('.pin').live( 'click', function(e) {
+		    e.preventDefault();
+		    e.stopPropagation();
+		    pin_id = $(this).attr('id').replace('point','');
+		    $('.infobox h1').text(points[pin_id].title);
+		    $('.infobox__insertedhtml').html(points[pin_id].content);
+		    $('.infobox').fadeIn("fast");
+	    });
+	    
+	    $('.infobox__btnclose, .infobox').click(function(e) {
+		    $('.infobox').fadeOut("fast");
+	    });
+	    
+	    // TODO: Do not let into production
+		/*
+	    viewer.addHandler('canvas-click', function (event)
+        {
+            var viewportPoint = viewer.viewport.pointFromPixel(event.position);
+            console.log("x: " + viewportPoint.x);
+            console.log("y: " + viewportPoint.y);
+        });
+		*/
+	    
+	</script>
+
+	
+</body>
+
+</html>

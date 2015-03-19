@@ -98,8 +98,8 @@
 	        id: "osd_liam",
 	        prefixUrl: "assets/images/",
 	        tileSources: "/assets/tiles/hdos.dzi",
-			defaultZoomLevel: 3,
-			minZoomLevel: 1,
+			defaultZoomLevel: 2.55,
+			minZoomLevel: 2.55,
 			visibilityRatio: 1, // Ensure image stays in the viewpoint
 			zoomPerClick: 1, // Click will not trigger zoom
 			showNavigationControl: false,
@@ -107,6 +107,12 @@
 			constrainDuringPan: true,
 		    overlays: point_overlays
 	    });
+	    
+	    // Pan to start of the scroll
+	    // Needs a second delay otherwise doesn't recognise OpenSeaDragon
+		setTimeout(function () {
+	    	viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.09313725490196081));
+	    }, 1000);
 	    
 	    $('.pin').live( 'click', function(e) {
 		    e.preventDefault();
@@ -122,14 +128,15 @@
 	    });
 	    
 	    // TODO: Do not let into production
+	    /*
 		viewer.addHandler('canvas-click', function (event)
-        /*
 	    {
             var viewportPoint = viewer.viewport.pointFromPixel(event.position);
             console.log("x: " + viewportPoint.x);
             console.log("y: " + viewportPoint.y);
         });
         */
+      
 		
 	    
 	</script>

@@ -65,15 +65,15 @@
 	<script type="text/javascript">
 		
 		var points = [{
-			"x": 0.1725587480161596, 
-		    "y": 0.2626583298462734,
+			"x": 0.4307291666666665, 
+		    "y": 0.024218749999999987,
 		    "title": "Point One",
 		    "content": '<iframe src="https://player.vimeo.com/video/106610828" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
 		    "link": "http://www.vam.ac.uk",
 		    "date": "2014/10/23"
 		}, {
-			"x": 0.7751677852348994, 
-		    "y": 0.19580536912751675,
+			"x": 0.5598958333333331, 
+		    "y": 0.09244791666666666,
 		    "title": "Point Two",
 		    "content": "This is some text content",
 		    "link": "http://www.vam.ac.uk",
@@ -97,11 +97,11 @@
 	    var viewer = OpenSeadragon({
 	        id: "osd_liam",
 	        prefixUrl: "assets/images/",
-	        tileSources: "/assets/tiles/landscape.dzi",
-			defaultZoomLevel: 1.8,
+	        tileSources: "/assets/tiles/hdos.dzi",
+			defaultZoomLevel: 3,
 			minZoomLevel: 1,
 			visibilityRatio: 1, // Ensure image stays in the viewpoint
-			zoomPerClick: 0, // Click will not trigger zoom
+			zoomPerClick: 1, // Click will not trigger zoom
 			showNavigationControl: false,
 			springStiffness: 5.0,
 			constrainDuringPan: true,
@@ -122,14 +122,15 @@
 	    });
 	    
 	    // TODO: Do not let into production
-		/*
-	    viewer.addHandler('canvas-click', function (event)
-        {
+		viewer.addHandler('canvas-click', function (event)
+        /*
+	    {
             var viewportPoint = viewer.viewport.pointFromPixel(event.position);
             console.log("x: " + viewportPoint.x);
             console.log("y: " + viewportPoint.y);
         });
-		*/
+        */
+		
 	    
 	</script>
 

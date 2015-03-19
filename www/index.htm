@@ -3,6 +3,10 @@
 <head>
 	<title>Image Zoom</title>
 	
+	<link rel="stylesheet" type="text/css" href="http://www.vam.ac.uk/_designs/new-squiz/css/main.css" media="all" />
+	<!--[if IE 8]><link rel="stylesheet" type="text/css" href="http://www.vam.ac.uk/__data/assets/css_file/0004/245479/ie8.css" media="all" /><![endif]-->
+	<!--[if lt IE 8]><link rel="stylesheet" type="text/css" href="http://www.vam.ac.uk/__data/assets/css_file/0006/172356/lt_ie8.css" media="all" /><![endif]-->
+
 	<style>
 		
 		#osd_liam {
@@ -38,6 +42,7 @@
 				width: 75%;
 				margin: 5% auto;
 				height: 70%;
+				overflow: scroll;
 			}
 			
 		.js-on .point_data {
@@ -63,8 +68,18 @@
 	</div>
 	
 	<ul class="point_data">
-		<li data-point_x="0.4307291666666665", data-point_y="0.024218749999999987">
+		<li data-point_x="0.0507648302449944", data-point_y="0.030341671214326404">
 			<h2>Point One</h2>
+			<time datetime="2014-10-23">2014/10/23</time>
+			<div class="content">
+				<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/23325863&amp;color=ff5500&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false"></iframe>
+				<h3>Transcript</h3>
+				<p>[sounds recorded in the V&A MedRen Gallery]</p>
+			</div>
+		</li>
+		
+		<li data-point_x="0.4307291666666665", data-point_y="0.024218749999999987">
+			<h2>Point Two</h2>
 			<time datetime="2014-10-23">2014/10/23</time>
 			<div class="content">
 				<iframe src="https://player.vimeo.com/video/106610828" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -74,22 +89,13 @@
 		</li>
 		
 		<li data-point_x="0.5598958333333331", data-point_y="0.09244791666666666">
-			<h2>Point Two</h2>
+			<h2>Point Three</h2>
 			<time datetime="2014-10-23">2014/10/23</time>
 			<div class="content">
 				<p>Handy text content</p>
 			</div>
 		</li>
 		
-		<li data-point_x="0.2033937037037037", data-point_y="0.15885169934640525">
-			<h2>Point Three</h2>
-			<time datetime="2014-10-23">2014/10/23</time>
-			<div class="content">
-				<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/23325863&amp;color=ff5500&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false"></iframe>
-				<h3>Transcript</h3>
-				<p>[sounds recorded in the V&A MedRen Gallery]</p>
-			</div>
-		</li>
 	</ul>
 	
 	<script src="assets/js/openseadragon.min.js"></script>
@@ -116,9 +122,9 @@
 	    var viewer = OpenSeadragon({
 	        id: "osd_liam",
 	        prefixUrl: "assets/images/",
-	        tileSources: "/assets/tiles/hdos.dzi",
-			defaultZoomLevel: 2.55,
-			minZoomLevel: 2.55,
+	        tileSources: "/assets/tiles/landscape.dzi",
+			defaultZoomLevel: 3,
+			minZoomLevel: 3,
 			visibilityRatio: 1, // Ensure image stays in the viewpoint
 			zoomPerClick: 1, // Click will not trigger zoom
 			showNavigationControl: false,
@@ -130,7 +136,7 @@
 	    // Pan to start of the scroll
 	    // Needs a second delay otherwise doesn't recognise OpenSeaDragon
 		setTimeout(function () {
-	    	viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.09313725490196081));
+	    	viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.0562));
 	    }, 1000);
 	    
 	    $('.pin').live( 'click', function(e) {
@@ -146,14 +152,14 @@
 	    });
 	    
 	    // TODO: Do not let into production
-	    /*
+	    
 		viewer.addHandler('canvas-click', function (event)
 		{
             var viewportPoint = viewer.viewport.pointFromPixel(event.position);
             console.log("x: " + viewportPoint.x);
             console.log("y: " + viewportPoint.y);
         });
-        */
+        
         
       
 		

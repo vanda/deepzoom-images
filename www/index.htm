@@ -39,60 +39,79 @@
 				margin: 5% auto;
 				height: 70%;
 			}
+			
+		.js-on .point_data {
+			display: none;
+		}
+		
+		.js-off #osd_liam {
+			display: none;
+		}
 	</style>
 	
 </head>
 
-<body>
+<body class="js-off">
 	<div id="osd_liam">
-		
 		<div class="infobox">
 			<div class="infobox__content">
 				<a href="#" class="infobox__btnclose">Close</a>
-				
 				<h1 class="infobox__title"></h1>
-				
 				<div class="infobox__insertedhtml"></div>
-				
 			</div>
 		</div>
-		
 	</div>
+	
+	<ul class="point_data">
+		<li data-point_x="0.4307291666666665", data-point_y="0.024218749999999987">
+			<h2>Point One</h2>
+			<time datetime="2014-10-23">2014/10/23</time>
+			<div class="content">
+				<iframe src="https://player.vimeo.com/video/106610828" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				<h3>Transcript</h3>
+				<p>[Background music]</p>
+			</div>
+		</li>
+		
+		<li data-point_x="0.5598958333333331", data-point_y="0.09244791666666666">
+			<h2>Point Two</h2>
+			<time datetime="2014-10-23">2014/10/23</time>
+			<div class="content">
+				<p>Handy text content</p>
+			</div>
+		</li>
+		
+		<li data-point_x="0.2033937037037037", data-point_y="0.15885169934640525">
+			<h2>Point Three</h2>
+			<time datetime="2014-10-23">2014/10/23</time>
+			<div class="content">
+				<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/23325863&amp;color=ff5500&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false"></iframe>
+				<h3>Transcript</h3>
+				<p>[sounds recorded in the V&A MedRen Gallery]</p>
+			</div>
+		</li>
+	</ul>
 	
 	<script src="assets/js/openseadragon.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		
-		var points = [{
-			"x": 0.4307291666666665, 
-		    "y": 0.024218749999999987,
-		    "title": "Point One",
-		    "content": '<iframe src="https://player.vimeo.com/video/106610828" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',
-		    "link": "http://www.vam.ac.uk",
-		    "date": "2014/10/23"
-		}, {
-			"x": 0.5598958333333331, 
-		    "y": 0.09244791666666666,
-		    "title": "Point Two",
-		    "content": "This is some text content",
-		    "link": "http://www.vam.ac.uk",
-		    "date": "2014/10/23"
-		}];
+		$('body').removeClass('js-off').addClass('js-on');
 		
 		// Create pins from points
 		point_overlays = [];
-		for (var i = 0; i < points.length; i++) {
+		var point_list = $('.point_data li');
+		point_list.each(function(i, li) {
 			d = {
 				id: 'point' + i,
-	            x: points[i].x, 
-	            y: points[i].y, 
+	            x: $(this).data('point_x'), 
+	            y: $(this).data('point_y'), 
 	            width: 0.01,
 	            height: 0.01,
 	            className: 'pin'
 			};
 		    point_overlays.push(d);
-		};
+		});
 		
 	    var viewer = OpenSeadragon({
 	        id: "osd_liam",
@@ -115,11 +134,10 @@
 	    }, 1000);
 	    
 	    $('.pin').live( 'click', function(e) {
-		    e.preventDefault();
-		    e.stopPropagation();
 		    pin_id = $(this).attr('id').replace('point','');
-		    $('.infobox h1').text(points[pin_id].title);
-		    $('.infobox__insertedhtml').html(points[pin_id].content);
+		    var point_bullet = $(point_list[pin_id]);
+		    $('.infobox h1').text(point_bullet.find('h2').text());
+		    $('.infobox__insertedhtml').html(point_bullet.find('.content').html());
 		    $('.infobox').fadeIn("fast");
 	    });
 	    
@@ -130,12 +148,13 @@
 	    // TODO: Do not let into production
 	    /*
 		viewer.addHandler('canvas-click', function (event)
-	    {
+		{
             var viewportPoint = viewer.viewport.pointFromPixel(event.position);
             console.log("x: " + viewportPoint.x);
             console.log("y: " + viewportPoint.y);
         });
         */
+        
       
 		
 	    

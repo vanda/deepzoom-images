@@ -1,9 +1,20 @@
-#osd_liam {
-	border: 1px solid grey;
-	width: 100%;
-	height: 600px;
-	position: relative
+.osd {
+	border-top: 1px dashed #ddd;
+	border-bottom: 1px dashed #ddd;
+	margin-bottom: 1em;
+	padding: 1em 0;
 }
+
+	.osd__container {
+		border: 1px solid grey;
+		width: 100%;
+		height: 300px;
+		position: relative
+	}
+	
+	.osd_instructions {
+		margin: 1em 0 0;
+	}
 
 .pin { 
 	opacity:    0.4;
@@ -34,11 +45,13 @@
 		height: 70%;
 		overflow: scroll;
 	}
-	
-.js-on .point_data {
+
+/* JS specifics */
+
+.js-on .point_data .content {
 	display: none;
 }
 
-.js-off #osd_liam {
+.js-off .osd {
 	display: none;
 }

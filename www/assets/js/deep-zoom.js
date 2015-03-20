@@ -19,8 +19,8 @@ var viewer = OpenSeadragon({
     id: "osd_liam",
     prefixUrl: "assets/images/",
     tileSources: "/assets/tiles/landscape.dzi",
-	defaultZoomLevel: 3,
-	minZoomLevel: 3,
+	defaultZoomLevel: 4.3,
+	minZoomLevel: 4.3,
 	visibilityRatio: 1, // Ensure image stays in the viewpoint
 	zoomPerClick: 1, // Click will not trigger zoom
 	showNavigationControl: false,
@@ -32,13 +32,13 @@ var viewer = OpenSeadragon({
 // Pan to start of the scroll
 // Needs a second delay otherwise doesn't recognise OpenSeaDragon
 setTimeout(function () {
-	viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.0562));
+	viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.0573));
 }, 1000);
 
 $('.pin').live( 'click', function(e) {
     pin_id = $(this).attr('id').replace('point','');
     var point_bullet = $(point_list[pin_id]);
-    $('.infobox h1').text(point_bullet.find('h2').text());
+    $('.infobox h1').text(point_bullet.find('h3').text());
     $('.infobox__insertedhtml').html(point_bullet.find('.content').html());
     $('.infobox').fadeIn("fast");
 });

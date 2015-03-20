@@ -1,0 +1,44 @@
+#osd_liam {
+	border: 1px solid grey;
+	width: 100%;
+	height: 600px;
+	position: relative
+}
+
+.pin { 
+	opacity:    0.4;
+    filter:     alpha(opacity=40);
+    border:     2px solid #900;
+    outline:    none;
+    background-color: #900;
+}
+
+.infobox {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	display: none;
+}
+
+	.infobox__content {
+		background-color: white;
+		max-width: 800px;
+		min-width: 50%;
+		width: 75%;
+		margin: 5% auto;
+		padding: 1em;
+		height: 70%;
+		overflow: scroll;
+	}
+	
+.js-on .point_data {
+	display: none;
+}
+
+.js-off #osd_liam {
+	display: none;
+}

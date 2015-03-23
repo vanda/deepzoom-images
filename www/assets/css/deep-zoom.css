@@ -20,34 +20,48 @@
 	/* SVG and multiple background image support is very similar
 	 * We can use it for handy fallback
 	 * See https://css-tricks.com/using-svg/ for details */
-	 
     background: url('/assets/img/marker.png');
     background-image: url(/assets/img/marker.svg), none;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
     outline: none;
+    cursor: pointer;
 }
 
 .infobox {
 	background-color: rgba(0, 0, 0, 0.5);
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 	display: none;
 }
 
 	.infobox__content {
-		background-color: white;
-		max-width: 800px;
-		min-width: 50%;
-		width: 75%;
-		margin: 5% auto;
-		padding: 1em;
-		height: 70%;
+		background: #fff;
+		border: 1px solid #666;
 		overflow: scroll;
+		position: fixed;
+		top: 1em;
+		bottom: 1em;
+		left: 1em;
+		right: 1em;
+		padding: 1em;
+	}
+	
+	@media (min-device-width: 640px) {
+		.infobox__content{
+			height: 80%;
+			position: relative;
+			width: 100%;
+			max-width: 800px;
+			left: auto;
+			right: auto;
+			margin: 5% auto;
+		}
 	}
 
 /* JS specifics */

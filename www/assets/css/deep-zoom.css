@@ -71,7 +71,11 @@
 		}
 	}
 
-/* JS specifics */
+/* JS specifics
+ * .js-on is added to the body tag as the first action by deep-zoom.js.
+ * If JS doesn't exist then we are not showing the OpenSeadragon container.
+ * If JS is enabled then we are showing less of the timeline data, because 
+ *    it gets embedded with the OSD box. */
 
 .js-on .point_data .content {
 	display: none;

@@ -64,7 +64,7 @@ viewer.addHandler('open', function() {
 			$(this).toggleText('Show the pins', 'Hide the pins');
 		});
 		
-	}, 100);
+	}, 500);
 	
 });
 
@@ -78,11 +78,15 @@ function open_overlay(point_id) {
 	var point_bullet = $(window.point_list[point_id]);
     $('.infobox h1').text(point_bullet.find('h3').text());
     $('.infobox__insertedhtml').html(point_bullet.find('.content').html());
-    $('.infobox').fadeIn("fast");
+    $('.infobox').fadeIn("fast", function() {
+	    $(this).addClass('show');
+    });
 }
 
 $('.infobox__btnclose, .infobox').click(function(e) {
-    $('.infobox').fadeOut("fast");
+    $('.infobox').fadeOut("fast", function(){
+	    $(this).removeClass('show')
+    });
 });
 
 jQuery.fn.extend({

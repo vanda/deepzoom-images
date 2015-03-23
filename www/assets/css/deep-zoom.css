@@ -61,25 +61,35 @@
 	}
 
 .infobox {
-	background-color: rgba(0, 0, 0, 0.5);
-	position: fixed;
+	background-color: rgba(255, 255, 255, 0.8);
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
 	z-index: 2;
 	display: none;
 }
+
+	.infobox.show {
+		display: table !important;
+	}
+	
+	.infobox__middle {
+	    display: table-cell;
+	    vertical-align: middle;
+	}
 
 	.infobox__content {
 		background: #fff;
 		border: 1px solid #666;
 		overflow: scroll;
-		position: fixed;
-		top: 1em;
-		bottom: 1em;
-		left: 1em;
-		right: 1em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 500px;
+		width: 90%;
 		padding: 1em;
 	}
 	
@@ -90,16 +100,7 @@
 			width: 100%;
 		}
 	
-	@media (min-device-width: 640px) {
-		.infobox__content{
-			position: relative;
-			width: 100%;
-			max-width: 500px;
-			left: auto;
-			right: auto;
-			margin: 5% auto;
-		}
-	}
+
 
 /* JS specifics
  * .js-on is added to the body tag as the first action by deep-zoom.js.

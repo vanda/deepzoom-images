@@ -65,6 +65,13 @@ viewer.addHandler('open', function() {
 		});
 		
 	}, 100);
+	
+});
+
+// On click of the bulleted list pan & zoom to the relevant area
+$('.point_data li').click(function(e) {
+	viewer.viewport.panTo(new OpenSeadragon.Point($(this).data('point_x'),$(this).data('point_y')));
+	viewer.viewport.zoomTo(7);
 });
 
 function open_overlay(point_id) {

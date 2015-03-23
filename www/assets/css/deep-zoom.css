@@ -77,10 +77,17 @@
  * If JS is enabled then we are showing less of the timeline data, because 
  *    it gets embedded with the OSD box. */
 
-.js-on .point_data .content {
-	display: none;
-}
 
-.js-off .osd {
-	display: none;
-}
+/* JS ON */
+	.js-on .point_data .content {
+		display: none;
+	}
+	
+	.js-on .point_data li {
+		cursor: pointer;
+	}
+
+/* JS OFF */
+	.js-off .osd {
+		display: none;
+	}

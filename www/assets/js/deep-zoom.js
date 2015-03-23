@@ -1,7 +1,10 @@
 $('body').removeClass('js-off').addClass('js-on');
-	
+
+var overlay = true,
+	point_overlays = [],
+	viewer;
+
 // Create pins from points
-var point_overlays = [];
 window.point_list = $('.point_data li');
 window.point_list.each(function(i, li) {
 	d = {
@@ -15,7 +18,7 @@ window.point_list.each(function(i, li) {
     point_overlays.push(d);
 });
 
-var viewer = OpenSeadragon({
+viewer = OpenSeadragon({
     id: "osd_liam",
     prefixUrl: "assets/images/",
     tileSources: "/assets/tiles/landscape.dzi",
@@ -54,6 +57,13 @@ viewer.addHandler('open', function() {
 			viewer.setFullScreen(1);
 		});
 		
+		// Show hide the overlays
+		$('.osd_btn_show_hide_pins').click( function(e) {
+			e.preventDefault();
+			$('.pin').toggleClass('pin__hidden');
+			$(this).toggleText('Show the pins', 'Hide the pins');
+		});
+		
 	}, 100);
 });
 
@@ -66,4 +76,18 @@ function open_overlay(point_id) {
 
 $('.infobox__btnclose, .infobox').click(function(e) {
     $('.infobox').fadeOut("fast");
+});
+
+jQuery.fn.extend({
+    toggleText: function (a, b) {
+        var that = this;
+        if (that.text() != a && that.text() != b) {
+            that.text(a);
+        } else if (that.text() == a) {
+            that.text(b);
+        } else if (that.text() == b) {
+            that.text(a);
+        }
+        return this;
+    }
 });

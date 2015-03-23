@@ -7,3 +7,16 @@ Dev set up is using [this image](http://www-images.theonering.org/torwp/wp-conte
 1. Download image
 2. Modify `tile_generator/generate.py:7&14` to point to the correct file
 3. Run `python tile_generator/generate.py`
+
+
+## Work out point reference
+Add this snippet at the bottom of `www/assets/js/deep-zoom.js`
+
+```
+viewer.addHandler('canvas-click', function (event)
+{
+    var viewportPoint = viewer.viewport.pointFromPixel(event.position);
+    console.log("x: " + viewportPoint.x);
+    console.log("y: " + viewportPoint.y);
+});
+```

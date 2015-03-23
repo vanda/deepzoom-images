@@ -2,8 +2,8 @@ $('body').removeClass('js-off').addClass('js-on');
 	
 // Create pins from points
 var point_overlays = [];
-var point_list = $('.point_data li');
-point_list.each(function(i, li) {
+window.point_list = $('.point_data li');
+window.point_list.each(function(i, li) {
 	d = {
 		id: 'point' + i,
         x: $(this).data('point_x'), 
@@ -38,7 +38,7 @@ viewer.addHandler('open', function() {
 		viewer.viewport.panTo(new OpenSeadragon.Point(0.2,0.0573));
 		
 		// Add a tracker to each pin on the map
-		for (var i = 0; i < point_list.length; i++) {
+		for (var i = 0; i < window.point_list.length; i++) {
 		    new OpenSeadragon.MouseTracker({
 			    element: 'point' + i,
 			    clickHandler: function(e) {
@@ -48,13 +48,17 @@ viewer.addHandler('open', function() {
 		    });
 		}
 		
+		// Go full screen
+		$('.osd_btn_full_screen').click( function(e) {
+			e.preventDefault();
+			viewer.setFullScreen(1);
+		});
+		
 	}, 100);
 });
 
 function open_overlay(point_id) {
-	point_id = parseInt(point_id) + 1;
-	console.log($('.point_data').html());
-	var point_bullet = $('.point_data li:nth-child(' + point_id + ')');
+	var point_bullet = $(window.point_list[point_id]);
     $('.infobox h1').text(point_bullet.find('h3').text());
     $('.infobox__insertedhtml').html(point_bullet.find('.content').html());
     $('.infobox').fadeIn("fast");
@@ -62,13 +66,4 @@ function open_overlay(point_id) {
 
 $('.infobox__btnclose, .infobox').click(function(e) {
     $('.infobox').fadeOut("fast");
-});
-
-// TODO: Do not let into production
-
-viewer.addHandler('canvas-click', function (event)
-{
-    var viewportPoint = viewer.viewport.pointFromPixel(event.position);
-    console.log("x: " + viewportPoint.x);
-    console.log("y: " + viewportPoint.y);
 });

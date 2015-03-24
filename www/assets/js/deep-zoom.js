@@ -46,7 +46,7 @@ viewer.addHandler('open', function() {
 			    element: 'point' + i,
 			    clickHandler: function(e) {
 				    point_id = e.eventSource.element.id.replace('point', '');
-				    open_overlay(point_id);
+				    open_infobox(point_id);
 				}
 		    });
 		}
@@ -74,7 +74,16 @@ $('.point_data li').click(function(e) {
 	viewer.viewport.zoomTo(7);
 });
 
-function open_overlay(point_id) {
+$('.infobox__btnclose, .infobox').click(function(e) {
+    close_infobox()
+});
+
+$(document).keyup(function(e) {
+	// 27: ESC
+	if (e.keyCode == 27) { close_infobox(); }
+});
+
+function open_infobox(point_id) {
 	var point_bullet = $(window.point_list[point_id]);
     $('.infobox h1').text(point_bullet.find('h3').text());
     $('.infobox__insertedhtml').html(point_bullet.find('.content').html());
@@ -83,11 +92,11 @@ function open_overlay(point_id) {
     });
 }
 
-$('.infobox__btnclose, .infobox').click(function(e) {
-    $('.infobox').fadeOut("fast", function(){
+function close_infobox(){
+	$('.infobox').fadeOut("fast", function(){
 	    $(this).removeClass('show')
     });
-});
+}
 
 jQuery.fn.extend({
     toggleText: function (a, b) {

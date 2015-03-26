@@ -99,7 +99,10 @@
 			max-width: 500px;
 			width: 100%;
 		}
-	
+
+.transcript {
+    width: auto;
+}
 
 
 /* JS specifics

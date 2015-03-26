@@ -1,6 +1,6 @@
 www/assets/tiles/*
 !*.gitkeep
-
+*.pyc
 get-pip.py
 .vagrant/*
 .DS_Store

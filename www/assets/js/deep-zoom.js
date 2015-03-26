@@ -121,6 +121,12 @@ $('.infobox__btnclose, .infobox').click(function (e) {
     close_infobox();
 });
 
+// If we click inside the the infobox content we don't want the info box to close
+$(".infobox .infobox__content").click(function(e) {
+    e.stopPropagation();
+});
+
+// Events on key presses
 $(document).keyup(function (e) {
     // 27: ESC
     if (e.keyCode === 27) { close_infobox(); }

@@ -61,9 +61,9 @@ window.point_list.each(function (i) {
 viewer = new OpenSeadragon({
     id: "osd_liam",
     prefixUrl: "assets/images/",
-    tileSources: "/assets/tiles/landscape.dzi",
-    defaultZoomLevel: 4.3,
-    minZoomLevel: 4.3,
+    tileSources: "/assets/tiles/scroll.dzi",
+    defaultZoomLevel: 2.7,
+    minZoomLevel: 2.7,
     visibilityRatio: 1, // Ensure image stays in the viewpoint
     zoomPerClick: 1, // Click will not trigger zoom
     showNavigationControl: false,
@@ -79,7 +79,7 @@ viewer.addHandler('open', function () {
         var point_id;
 
         // Pan to start of the scroll
-        viewer.viewport.panTo(new OpenSeadragon.Point(0.2, 0.0573));
+        viewer.viewport.panTo(new OpenSeadragon.Point(0.2, 0.091));
 
         // Add a tracker to each pin on the map
         for (i = 0; i < window.point_list.length; i = i + 1) {

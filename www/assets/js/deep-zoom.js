@@ -38,6 +38,7 @@ if( $('.point_data').length ) {
     // Set up vars
     var point_list = $('.point_data'),
         dzi_location = point_list.attr('data-dzi'),
+        osd_container = point_list.attr('data-osd_box_id'),
         overlay = true,
         point_overlays = [],
         viewer,
@@ -46,6 +47,34 @@ if( $('.point_data').length ) {
     
     // And away we go...
     $('body').removeClass('js-off').addClass('js-on');
+    
+    // Create OSD container
+    $('<div />', {
+        class: 'osd'
+    }).append($('<div />',{
+        class: 'osd__container',
+        id: osd_container
+    })).insertBefore(point_list);
+    
+    $('<p />', {
+        class: 'osd__instruction',
+        html: '<a href="#" class="more osd_btn_full_screen">View full screen</a> <a href="#" class="more osd_btn_show_hide_pins">Hide the pins</a>'
+    }).insertAfter('.osd__container');
+    
+    $('<p />', {
+        class: 'osd__instruction',
+        text: 'Scroll left and right to explore the building project over the last year, zoom in and out to see the detail.'
+    }).insertAfter('.osd__container');
+    
+    // Create overlay container
+    $('<div />', {
+        class: 'infobox'
+    }).append($('<div />', {
+        class: 'infobox__middle'
+    }).append($('<div />', {
+        class: 'infobox__content',
+        html: '<a href="#" class="infobox__btnclose btn right">Close</a><h1 class="infobox__title"></h1><div class="infobox__insertedhtml"></div>'
+    }))).appendTo('.osd__container');
     
     // Create pins from points
     window.point_list = $('.point_data li');
@@ -62,7 +91,7 @@ if( $('.point_data').length ) {
     });
     
     viewer = new OpenSeadragon({
-        id: "osd_liam",
+        id: osd_container,
         tileSources: dzi_location,
         defaultZoomLevel: 2.7,
         minZoomLevel: 2.7,

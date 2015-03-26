@@ -16,7 +16,7 @@
 		margin: 0;
 	}
 	
-	.point_data time {
+	.point_data__date {
 		display: block;
 		font-size: 0.825em;
 		margin-bottom: 1em;
@@ -113,7 +113,7 @@
 
 
 /* JS ON */
-	.js-on .point_data .content {
+	.js-on .point_data__content {
 		display: none;
 	}
 	

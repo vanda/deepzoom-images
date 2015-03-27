@@ -64,31 +64,31 @@ if( $('.point_data').length ) {
     $('body').removeClass('js-off').addClass('js-on');
     
     // Create OSD container
-    $('<div />', {
-        class: 'osd'
-    }).append($('<div />',{
-        class: 'osd__container',
-        id: osd_container
+    $('<div></div>', {
+        'class': 'osd'
+    }).append($('<div></div>',{
+        'class': 'osd__container',
+        'id': osd_container
     })).insertBefore(point_list);
     
-    $('<p />', {
-        class: 'osd__instruction',
-        html: '<a href="#" class="more osd_btn_full_screen">View full screen</a> <a href="#" class="more osd_btn_show_hide_pins">Hide the pins</a>'
+    $('<p></p>', {
+        'class': 'osd__instruction',
+        'html': '<a href="#" class="more osd_btn_full_screen">View full screen</a> <a href="#" class="more osd_btn_show_hide_pins">Hide the pins</a>'
     }).insertAfter('.osd__container');
     
-    $('<p />', {
-        class: 'osd__instruction',
-        text: 'Scroll left and right to explore the building project over the last year, zoom in and out to see the detail.'
+    $('<p></p>', {
+        'class': 'osd__instruction',
+        'text': 'Scroll left and right to explore the building project over the last year, zoom in and out to see the detail.'
     }).insertAfter('.osd__container');
     
     // Create overlay container
-    $('<div />', {
-        class: 'infobox'
-    }).append($('<div />', {
-        class: 'infobox__middle'
-    }).append($('<div />', {
-        class: 'infobox__content',
-        html: '<a href="#" class="infobox__btnclose btn right">Close</a><h1 class="infobox__title"></h1><div class="infobox__insertedhtml"></div>'
+    $('<div></div>', {
+        'class': 'infobox'
+    }).append($('<div></div>', {
+        'class': 'infobox__middle'
+    }).append($('<div></div>', {
+        'class': 'infobox__content',
+        'html': '<a href="#" class="infobox__btnclose btn right">Close</a><h1 class="infobox__title"></h1><div class="infobox__insertedhtml"></div>'
     }))).appendTo('.osd__container');
     
     // Create pins from points
@@ -179,20 +179,20 @@ if( $('.point_data').length ) {
     });
     
     if( get_querystring_value('builder') === 'true' ) {
-        $('<div />', {
-            class: 'osd_coord_tester pane'
-        }).append($('<h3 />', {
-            text: 'Deep Zoom Coords'
+        $('<div></div>', {
+            'class': 'osd_coord_tester pane'
+        }).append($('<h3></h3>', {
+            'text': 'Deep Zoom Coords'
         })).insertAfter('.osd__container');
         
-        $('<p />', {
-            class: 'osd_coord_tester__x',
-            text: 'x:'
+        $('<p></p>', {
+            'class': 'osd_coord_tester__x',
+            'text': 'x:'
         }).appendTo('.osd_coord_tester');
         
-        $('<p />', {
-            class: 'osd_coord_tester__y',
-            text: 'y:'
+        $('<p></p>', {
+            'class': 'osd_coord_tester__y',
+            'text': 'y:'
         }).appendTo('.osd_coord_tester');
         
         viewer.addHandler('canvas-click', function (event) {

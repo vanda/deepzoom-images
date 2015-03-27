@@ -13,7 +13,6 @@ function open_infobox(point_id) {
 }
 
 function close_infobox() {
-    
     // Slightly hacky way of stoping vimeo
     $('.point_data__vimeo').each(function() {
         var vi = $(this),
@@ -25,8 +24,6 @@ function close_infobox() {
     $('.infobox').fadeOut("fast", function () {
         $(this).removeClass('show');
     });
-    
-    
 }
 
 jQuery.fn.extend({
@@ -42,6 +39,13 @@ jQuery.fn.extend({
         return this;
     }
 });
+
+function get_querystring_value(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 // Only kick this off if there is point_data on the page...
 if( $('.point_data').length ) {
@@ -173,5 +177,29 @@ if( $('.point_data').length ) {
         // 27: ESC
         if (e.keyCode === 27) { close_infobox(); }
     });
+    
+    if( get_querystring_value('builder') === 'true' ) {
+        $('<div />', {
+            class: 'osd_coord_tester pane'
+        }).append($('<h3 />', {
+            text: 'Deep Zoom Coords'
+        })).insertAfter('.osd__container');
+        
+        $('<p />', {
+            class: 'osd_coord_tester__x',
+            text: 'x:'
+        }).appendTo('.osd_coord_tester');
+        
+        $('<p />', {
+            class: 'osd_coord_tester__y',
+            text: 'y:'
+        }).appendTo('.osd_coord_tester');
+        
+        viewer.addHandler('canvas-click', function (event) {
+            var viewportPoint = viewer.viewport.pointFromPixel(event.position);
+            $('.osd_coord_tester__x').text("x: " + viewportPoint.x);
+            $('.osd_coord_tester__y').text("y: " + viewportPoint.y);
+        });
+    }
 
 }

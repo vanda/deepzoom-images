@@ -98,8 +98,8 @@ if( $('.point_data').length ) {
             id: 'point' + i,
             x: $(this).data('point_x'),
             y: $(this).data('point_y'),
-            width: 0.01,
-            height: 0.01,
+            width: 0.005,
+            height: 0.005,
             className: 'pin'
         };
         point_overlays.push(data);
@@ -108,8 +108,8 @@ if( $('.point_data').length ) {
     viewer = new OpenSeadragon({
         id: osd_container,
         tileSources: dzi_location,
-        defaultZoomLevel: 2.7,
-        minZoomLevel: 2.7,
+        defaultZoomLevel: 9.73,
+        minZoomLevel: 9.73,
         visibilityRatio: 1, // Ensure image stays in the viewpoint
         zoomPerClick: 1, // Click will not trigger zoom
         showNavigationControl: false,
@@ -125,7 +125,7 @@ if( $('.point_data').length ) {
             var point_id;
     
             // Pan to start of the scroll
-            viewer.viewport.panTo(new OpenSeadragon.Point(0.2, 0.091));
+            viewer.viewport.panTo(new OpenSeadragon.Point(0.05163117200217038, 0.0253));
     
             // Add a tracker to each pin on the map
             for (i = 0; i < window.point_list.length; i = i + 1) {
@@ -159,7 +159,7 @@ if( $('.point_data').length ) {
     $('.point_data li').click(function (e) {
         e.preventDefault();
         viewer.viewport.panTo(new OpenSeadragon.Point($(this).data('point_x'), $(this).data('point_y')));
-        viewer.viewport.zoomTo(7);
+        viewer.viewport.zoomTo(16);
     });
     
     $('.infobox__btnclose, .infobox').click(function (e) {

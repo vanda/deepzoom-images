@@ -40,3 +40,9 @@ The Deep Zoom will appear above it.
 
 Add `?builder=true` to the query string
 
+## Deploying changes to Matrix
+
+script id: 253485
+css id: 253472
+
+Nb: in the css .pin background images should be modified to `background: url('mysource_files/marker.png');`

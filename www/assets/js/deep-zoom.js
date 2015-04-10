@@ -60,6 +60,9 @@ if( $('.point_data').length ) {
     
     // And away we go...
     $('body').removeClass('js-off').addClass('js-on');
+
+    // Hide transcripts
+    $('.point_data__content .transcript').hide();
     
     // Create OSD container
     $('<div></div>', {
@@ -168,6 +171,12 @@ if( $('.point_data').length ) {
     // If we click inside the the infobox content we don't want the info box to close
     $(".infobox .infobox__content").click(function(e) {
         e.stopPropagation();
+    });
+
+    // Show/hide transcript
+    $(".infobox__insertedhtml").delegate('.showhide-transcript', 'click', function(e) {
+        e.preventDefault();
+        $(this).parent().parent().find('.transcript').toggle();
     });
     
     // Events on key presses

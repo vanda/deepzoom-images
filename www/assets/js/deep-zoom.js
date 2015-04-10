@@ -13,13 +13,11 @@ function open_infobox(point_id) {
 }
 
 function close_infobox() {
-    // Slightly hacky way of stoping vimeo
-    $('.point_data__vimeo').each(function() {
-        var vi = $(this),
-            vidsrc = vi.attr('src');
-        vi.attr('src','');
-        vi.attr('src', vidsrc);
-    });
+    // Slightly hacky way of stoping the embeds from playing
+    var frame = $('.infobox__insertedhtml iframe'),
+        frame_src = frame.attr('src');
+    frame.attr('src','');
+    frame.attr('src', frame_src);
     
     $('.infobox').fadeOut("fast", function () {
         $(this).removeClass('show');

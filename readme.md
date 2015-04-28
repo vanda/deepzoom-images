@@ -1,6 +1,7 @@
 # Annotated Deep Zoom Image Tool
 
 ![Deep Zooming Image](/preview.jpg)
+
 Example of use: [Interactive: Exhibtion Road drawing scroll](http://www.vam.ac.uk/content/articles/i/exhibition-road-drawing-scroll/)
 
 Using [OpenSeadragon](https://openseadragon.github.io/) create zoomable version of a large image, and then add markers over the top to allow additional text/audio/video to annotate the details.

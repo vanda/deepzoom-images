@@ -1,13 +1,13 @@
-# ImageZoomModule
+# Annotated Deep Zoom Image Tool
 
+![Deep Zooming Image](/preview.jpg)
+Example of use: [Interactive: Exhibtion Road drawing scroll](http://www.vam.ac.uk/content/articles/i/exhibition-road-drawing-scroll/)
+
+Using [OpenSeadragon](https://openseadragon.github.io/) create zoomable version of a large image, and then add markers over the top to allow additional text/audio/video to annotate the details.
 
 ## Generate tiles
-Dev set up is using [this image](http://www-images.theonering.org/torwp/wp-content/uploads/2013/11/HDOS_TAPESTRY_Domestic.jpg) until the final scroll is completed by Liam.
-
-1. Download image
-2. Modify `tile_generator/generate.py:7&14` to point to the correct file
-3. Navigate to `tile_generator`
-4. Run `python generate.py`
+1. Modify `tile_generator/generate.py:7&14` to point to the correct file
+2. Run `python generate.py`
 
 
 ## Creation of the DeepZoom
@@ -17,7 +17,7 @@ Include the JS and CSS on the page
 Create a bulleted list with this `ul`
 
 ```
-<ul class="point_data" data-dzi="/assets/tiles/scroll.dzi" data-osd_box_id="osd_liam">
+<ul class="point_data" data-dzi="/assets/tiles/scroll.dzi" data-osd_box_id="osd_reference">
 ```
 
 Set up each `li` as follows:
@@ -39,10 +39,3 @@ The Deep Zoom will appear above it.
 ## Work out point coordinates
 
 Add `?builder=true` to the query string
-
-## Deploying changes to Matrix
-
-script id: 253485
-css id: 253472
-
-Nb: in the css .pin background images should be modified to `background: url('mysource_files/marker.png');`

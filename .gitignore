@@ -1,4 +1,5 @@
 www/assets/tiles/*
+tile_generator/stitch.jpg
 !*.gitkeep
 *.pyc
 get-pip.py

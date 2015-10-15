@@ -52,12 +52,14 @@ if( $('.point_data').length ) {
     var point_list = $('.point_data'),
         dzi_location = point_list.attr('data-dzi'),
         osd_container = point_list.attr('data-osd_box_id'),
+        osd_defaultZoomLevel = point_list.attr('data-initZoom'),
+        osd_minZoomLevel = point_list.attr('data-minZoom'),
+        osd_startingPoint = point_list.attr('data-startingPoint'),
         overlay = true,
         point_overlays = [],
         viewer,
         data,
         i;
-    
     // And away we go...
     $('body').removeClass('js-off').addClass('js-on');
 
@@ -106,11 +108,19 @@ if( $('.point_data').length ) {
         point_overlays.push(data);
     });
     
+    // Have we set defaults?
+    if (osd_defaultZoomLevel === undefined)       { osd_defaultZoomLevel = 9.73; }
+    if (osd_minZoomLevel === undefined)           { osd_minZoomLevel = 9.73; }
+    if (osd_startingPoint === undefined)          { osd_startingPoint = [0.05163117200217038, 0.0253];} else { osd_startingPoint = osd_startingPoint.split(','); }
+
+    console.log(osd_startingPoint);
+    console.log([parseFloat(osd_startingPoint[0]), parseFloat(osd_startingPoint[1])]);
+
     viewer = new OpenSeadragon({
         id: osd_container,
         tileSources: dzi_location,
-        defaultZoomLevel: 9.73,
-        minZoomLevel: 9.73,
+        defaultZoomLevel: osd_defaultZoomLevel,
+        minZoomLevel: osd_minZoomLevel,
         visibilityRatio: 1, // Ensure image stays in the viewpoint
         zoomPerClick: 1, // Click will not trigger zoom
         showNavigationControl: false,
@@ -118,7 +128,7 @@ if( $('.point_data').length ) {
         constrainDuringPan: true,
         overlays: point_overlays
     });
-    
+
     viewer.addHandler('open', function () {
     
         // Needs a brief delay otherwise doesn't recognise OpenSeaDragon
@@ -126,7 +136,7 @@ if( $('.point_data').length ) {
             var point_id;
     
             // Pan to start of the scroll
-            viewer.viewport.panTo(new OpenSeadragon.Point(0.05163117200217038, 0.0253));
+            viewer.viewport.panTo(new OpenSeadragon.Point(parseFloat(osd_startingPoint[0]), parseFloat(osd_startingPoint[1])));
     
             // Add a tracker to each pin on the map
             for (i = 0; i < window.point_list.length; i = i + 1) {

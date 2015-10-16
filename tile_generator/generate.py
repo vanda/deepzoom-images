@@ -4,7 +4,7 @@
 import deepzoom
 
 # Specify your source image
-SOURCE = "stitch.jpg"
+SOURCE = "final-sansbutton.jpg"
 
 # Create Deep Zoom Image creator with weird parameters
 creator = deepzoom.ImageCreator(tile_size=256, tile_overlap=2, tile_format="png",

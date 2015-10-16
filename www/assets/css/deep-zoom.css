@@ -30,7 +30,7 @@
 }
 
 	.osd__container {
-		border: 1px solid grey;
+		border: 1px solid gray;
 		width: 100%;
 		height: 300px;
 		position: relative
@@ -52,6 +52,14 @@
     outline: none;
     cursor: pointer;
 }
+
+	.pin.marker-audio {
+		background: url('../img/audio.png');
+	    background-image: url('../img/audio.svg'), none;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	    background-position: center center;
+	}
 
 	.pin__hidden {
 		/* There is no reason to ever want to see the pin when hidden is applied

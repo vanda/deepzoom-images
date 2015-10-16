@@ -55,11 +55,13 @@ if( $('.point_data').length ) {
         osd_defaultZoomLevel = point_list.attr('data-initZoom'),
         osd_minZoomLevel = point_list.attr('data-minZoom'),
         osd_startingPoint = point_list.attr('data-startingPoint'),
+        osd_height = point_list.attr('data-height'),
+        osd_marker = point_list.attr('data-marker'),
+        pin_class = "pin",
         overlay = true,
         point_overlays = [],
-        viewer,
-        data,
-        i;
+        viewer, data, i;
+
     // And away we go...
     $('body').removeClass('js-off').addClass('js-on');
 
@@ -71,17 +73,13 @@ if( $('.point_data').length ) {
         'class': 'osd'
     }).append($('<div></div>',{
         'class': 'osd__container',
-        'id': osd_container
+        'id': osd_container,
+        'style': "height: " + osd_height + "px;"
     })).insertBefore(point_list);
     
     $('<p></p>', {
         'class': 'osd__instruction',
         'html': '<a href="#" class="more osd_btn_full_screen">View full screen</a> <a href="#" class="more osd_btn_show_hide_pins">Hide the pins</a>'
-    }).insertAfter('.osd__container');
-    
-    $('<p></p>', {
-        'class': 'osd__instruction',
-        'text': 'Scroll left and right to explore the building project over the last year, zoom in and out to see the detail.'
     }).insertAfter('.osd__container');
     
     // Create overlay container
@@ -94,6 +92,10 @@ if( $('.point_data').length ) {
         'html': '<a href="#" class="infobox__btnclose btn right">Close</a><h1 class="infobox__title"></h1><div class="infobox__insertedhtml"></div>'
     }))).appendTo('.osd__container');
     
+    if (osd_marker != "undefined") {
+        pin_class = pin_class + " marker-" + osd_marker;
+    }
+
     // Create pins from points
     window.point_list = $('.point_data li');
     window.point_list.each(function (i) {
@@ -103,7 +105,7 @@ if( $('.point_data').length ) {
             y: $(this).data('point_y'),
             width: 0.005,
             height: 0.005,
-            className: 'pin'
+            className: pin_class
         };
         point_overlays.push(data);
     });
@@ -112,9 +114,6 @@ if( $('.point_data').length ) {
     if (osd_defaultZoomLevel === undefined)       { osd_defaultZoomLevel = 9.73; }
     if (osd_minZoomLevel === undefined)           { osd_minZoomLevel = 9.73; }
     if (osd_startingPoint === undefined)          { osd_startingPoint = [0.05163117200217038, 0.0253];} else { osd_startingPoint = osd_startingPoint.split(','); }
-
-    console.log(osd_startingPoint);
-    console.log([parseFloat(osd_startingPoint[0]), parseFloat(osd_startingPoint[1])]);
 
     viewer = new OpenSeadragon({
         id: osd_container,

@@ -30,4 +30,10 @@ a2enmod rewrite
 sed -i '/AllowOverride None/c AllowOverride All' /etc/apache2/sites-available/default
 service apache2 restart
 
+# Install DeepZoom generator tool
+cd /vagrant/deepzoom.py
+python setup.py install
+
+cd /
+
 echo 'And away we go...'
